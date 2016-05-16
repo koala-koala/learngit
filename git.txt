@@ -3,3 +3,6 @@ git start
 git end
 ...
 git change
+...
+today is Monday.
+the weather is great.
