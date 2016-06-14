@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
+	<style type="text/css">
+		html{
+			height: 100%;
+		}
+		body{
+			height: 200%;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="search" class="search">
+	<ul id="element"></ul>
+</body>
+<script type="text/template" id="tpl">
+	<%for(var i=0;i<list.length;i++){%>
+	<%var item = list[i]%>
+	<li>
+		<span><%=item.firstName%> <%item.lastName%></span>
+		<span><%-item.city%></span>
+	</li>
+	<%}%>
+</script>
+<script type="text/javascript">
+//通过_()方法将对象创建为underscore对象
+	var jsData = {name:'koala'};
+	var underscoreData = _(jsData);
+	console.log(underscoreData.value());
+
+	// var _ = '自定义变量';
+	// console.dir(_);
+	// var us = _.noConflict();
+
+	// console.dir(_);
+	var arr = [1,2,3];
+
+	var result = _(arr).chain().map(function(item){return item++;}).first().value();
+	console.log(result);
+
+	//扩展underscore
+	_.mixin({
+		hello:function(obj){
+			console.log('hello '+obj.name);
+		}
+	});
+
+	underscoreData.hello({'name':'koala'});
+
+	//遍历集合 each() map()
+	var arr1 = [1,2,3,4,5];
+	var obj = {first:1,second:2};
+	_(arr1).map(function(item,i){
+		console.info(arr1[i]+"---"+item);
+	});
+	_(obj).each(function(value,key){
+		console.log(key+"==="+value);
+	});
+	//debounce函数
+	var query = _(function(){
+		console.log($('#search').val());
+	}).debounce(500);
+	$('#search').bind('keypress',query);
+	//throttle函数
+	var query1 = _(function(){
+		console.log('query');
+	}).throttle(5000);
+
+	$(window).bind('scroll',query1);
+
+	//tempalte
+	var data = {  
+        list: [  
+            {firstName: '<a href="#">Zhang</a>', lastName: 'San', city: 'Shanghai'},  
+            {firstName: 'Li', lastName: 'Si', city: '<a href="#">Beijing</a>'},  
+            {firstName: 'Wang', lastName: 'Wu', city: 'Guangzhou'},  
+            {firstName: 'Zhao', lastName: 'Liu', city: 'Shenzhen'}  
+        ]  
+    };
+    var element = $("#element");
+    var tpl = $("#tpl").html();
+    var render = _.template(tpl);
+    var html = render(data);
+    element.html(html);
+</script>
+</html>

@@ -24,6 +24,5 @@
 		}
 
 	});
-
 	var listView  = new ListView();
 })(jQuery);

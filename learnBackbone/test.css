@@ -1,0 +1,33 @@
+.list-news{
+	padding: 10px 0 30px 0;
+}
+.list-news ul{
+	position: relative;
+	overflow: hidden;
+}
+.list-news ul li{
+	position: relative;
+	overflow: hidden;
+	line-height: 40px;
+	font-size: 16px;
+	color: #000;
+	height: 120px;
+	width: cal((100% - 60px)/3);
+	float: left;
+	margin-right: 30px;
+}
+.list-news ul li:last-child{
+	margin-right: 0;
+}
+.list-news ul li span.desc{
+	display: block;
+	height: 80px;
+	line-height: 40px;
+	overflow: hidden;
+}
+.list-news ul li span.time{
+	width: 130px;
+	position: absolute;
+	left: 0;
+	bottom: 10px;
+}
